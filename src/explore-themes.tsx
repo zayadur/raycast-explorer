@@ -113,7 +113,12 @@ export default function ExploreThemes() {
           {authors.length > 0 ? (
             <List.Dropdown.Section>
               {authors.map(({ username, name }) => (
-                <List.Dropdown.Item key={`author_${username}_${name}`} title={name} value={`user/${username}`} icon={getAvatarIcon(name)} />
+                <List.Dropdown.Item
+                  key={`author_${username}_${name}`}
+                  title={name}
+                  value={`user/${username}`}
+                  icon={getAvatarIcon(name)}
+                />
               ))}
             </List.Dropdown.Section>
           ) : null}

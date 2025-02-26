@@ -224,7 +224,10 @@ export default function ExplorePrompts(props: Props) {
                 keywords={[category.name, prompt.creativity || "unspecified"]}
                 accessories={[
                   { icon: Icon.ArrowUp, text: `${prompt.upvoteCount}`, tooltip: `Upvotes: ${prompt.upvoteCount}` },
-                  { icon: getCreativityIcon(prompt.creativity), tooltip: `Creativity: ${prompt.creativity || "Not specified"}` },
+                  {
+                    icon: getCreativityIcon(prompt.creativity),
+                    tooltip: `Creativity: ${prompt.creativity || "Not specified"}`,
+                  },
                 ]}
                 detail={<List.Item.Detail markdown={getPromptMarkdown(prompt)} />}
                 actions={
@@ -343,8 +346,8 @@ function getPromptMarkdown(prompt: Prompt) {
 }
 
 function getCreativityIcon(creativity: Prompt["creativity"]) {
-  if (!creativity) {
-    return Icon.CircleDisabled; // Default icon for undefined creativity
+  if (!creativity || creativity === "none") {
+    return Icon.CircleDisabled;
   }
 
   if (creativity === "low") {

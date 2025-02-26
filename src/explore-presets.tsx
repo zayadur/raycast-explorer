@@ -70,7 +70,11 @@ export default function ExplorePresets() {
                         <List.Item.Detail.Metadata.Label title="Model" text={modelName} />
                         <List.Item.Detail.Metadata.Label
                           title="Creativity"
-                          text={preset.creativity ? preset.creativity.charAt(0).toUpperCase() + preset.creativity.slice(1) : "Not specified"}
+                          text={
+                            preset.creativity
+                              ? preset.creativity.charAt(0).toUpperCase() + preset.creativity.slice(1)
+                              : "Not specified"
+                          }
                           icon={getCreativityIcon(preset.creativity)}
                         />
                         <List.Item.Detail.Metadata.Label title="Web Search" text={preset.web_search ? "On" : "Off"} />
@@ -122,8 +126,8 @@ export default function ExplorePresets() {
 }
 
 function getCreativityIcon(creativity: Preset["creativity"]) {
-  if (!creativity) {
-    return Icon.CircleDisabled; // Default icon for undefined creativity
+  if (!creativity || creativity === "none") {
+    return Icon.CircleDisabled;
   }
 
   if (creativity === "low") {
